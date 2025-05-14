@@ -1,4 +1,4 @@
 package com.tarot.model;
 
-public class CartaAstral {
+public interface CartaAstral {
 }
