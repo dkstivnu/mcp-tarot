@@ -11,7 +11,6 @@ public class Persona {
     private Zodiaco signoZodiaco;
     private Tarot tarot;
 
-
     // Constructores
 
     public Persona(Date fechaNacimiento, String nombre) {

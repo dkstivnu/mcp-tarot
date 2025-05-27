@@ -22,7 +22,6 @@ public enum Zodiaco {
 
     Zodiaco(String nombre) {
         this.name = nombre;
-        Date startDate = asignarStartDate(nombre);
     }
 
     public String getName() {
@@ -47,13 +46,6 @@ public enum Zodiaco {
 
     public void setEndDate(Date endDate) {
         this.endDate = endDate;
-    }
-
-    private static Date asignarStartDate(String nombre) {
-        String[] signo = new String[12];
-        Date[] startDates = new Date[12];
-
-        throw new RuntimeException("Todavia no se implementa completamente");
     }
 
 
