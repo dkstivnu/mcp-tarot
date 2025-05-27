@@ -1,8 +1,9 @@
 package com.tarot.model;
 
-import java.util.Date;
+import java.time.LocalDate;
 
 public enum Zodiaco {
+
     Aries("Aries"),
     Tauro("Tauro"),
     Geminis("Géminis"),
@@ -15,13 +16,14 @@ public enum Zodiaco {
     Acuario("Acuario"),
     Piscis("Piscis");
 
-
     private String name;
-    private Date startDate;
-    private Date endDate;
 
     Zodiaco(String nombre) {
         this.name = nombre;
+    }
+
+    Zodiaco(LocalDate fechaNacimiento) {
+        this.name = leerSigno(fechaNacimiento);
     }
 
     public String getName() {
@@ -32,21 +34,16 @@ public enum Zodiaco {
         this.name = name;
     }
 
-    public Date getStartDate() {
-        return startDate;
+    // Metodos propios
+
+    private static String leerSigno(LocalDate fechaNacimiento) {
+        LocalDate[] startFechas = new LocalDate[]{
+
+        };
+        LocalDate[] endFechas = new LocalDate[]{
+
+        };
+
+        return fechaNacimiento.toString();
     }
-
-    public void setStartDate(Date startDate) {
-        this.startDate = startDate;
-    }
-
-    public Date getEndDate() {
-        return endDate;
-    }
-
-    public void setEndDate(Date endDate) {
-        this.endDate = endDate;
-    }
-
-
 }
