@@ -18,7 +18,6 @@ public class Tarot {
     }
     //get y set
 
-
     public List<String> getCarta() {
         return carta;
     }
