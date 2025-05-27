@@ -3,6 +3,7 @@ package com.tarot.model;
 import java.util.List;
 
 public class ArcanoMenor implements CartaAstral {
+
     @Override
     public void establecerDatosPersonales() {
 
