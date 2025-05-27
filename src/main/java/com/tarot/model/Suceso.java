@@ -7,7 +7,7 @@ public class Suceso {
     private String descripcion;
     private Date fechaOcurrencia;
     private String tipo;       // por ejemplo: “Amor”, “Trabajo”, “Salud”
-    private String areaVida;   // categorización más fina
+    private String areaVida;   // categorización más fina, darle profundidad 
     private int impacto;       // 1..10
     private boolean confirmado;
 
