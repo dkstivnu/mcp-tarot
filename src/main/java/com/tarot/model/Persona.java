@@ -1,30 +1,30 @@
 package com.tarot.model;
 
-import java.util.Date;
+import java.time.LocalDate;
 
 public class Persona {
 
     // Atributos
 
     private String nombre;
-    private Date fechaNacimiento;
+    private LocalDate fechaNacimiento;
     private Zodiaco signoZodiaco;
     private Tarot tarot;
 
     // Constructores
 
-    public Persona(Date fechaNacimiento, String nombre) {
+    public Persona(LocalDate fechaNacimiento, String nombre) {
         this.fechaNacimiento = fechaNacimiento;
         this.nombre = nombre;
-        this.signoZodiaco = leerSigno(fechaNacimiento);
+        this.signoZodiaco = Zodiaco.leerSigno(fechaNacimiento);
         this.tarot = new Tarot();
     }
 
     public Persona() {
         this.nombre = "N/A";
-        this.fechaNacimiento = new Date();
+        this.fechaNacimiento = null;
         this.signoZodiaco = null;
-        this.tarot = new Tarot();
+        this.tarot = null;
 
     }
 
@@ -38,11 +38,11 @@ public class Persona {
         this.nombre = nombre;
     }
 
-    public Date getFechaNacimiento() {
+    public LocalDate getFechaNacimiento() {
         return fechaNacimiento;
     }
 
-    public void setFechaNacimiento(Date fechaNacimiento) {
+    public void setFechaNacimiento(LocalDate fechaNacimiento) {
         this.fechaNacimiento = fechaNacimiento;
     }
 
@@ -63,9 +63,4 @@ public class Persona {
     }
 
 
-    // Metodos propios
-
-    private Zodiaco leerSigno(Date fechaNacimiento) {
-        throw (new RuntimeException("Implementar la lectura del signo a partir de la fecha"));
-    }
 }
