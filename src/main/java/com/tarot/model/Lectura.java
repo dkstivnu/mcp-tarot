@@ -1,72 +1,95 @@
 package com.tarot.model;
 
-
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Clase que gestiona una lectura de tarot.
+ * Integra las cartas del Tarot de la Persona, mantiene predicciones
+ * y construye una interpretación final con todas las cartas y predicciones.
+ */
 public class Lectura {
-    private String tipoLectura;
-    private LocalDate fecha;
-    private Persona persona;
-    private List<String> cartasSeleccionadas;
-    private String interpretacion;
-    private List<Prediccion> predicciones;
+    /** Persona con su mazo de Tarot */
+    private final Persona persona;
+    /** Conjunto específico de cartas seleccionadas para esta lectura */
+    private final List<CartaAstral> cartasSeleccionadas;
+    /** Lista de predicciones generadas */
+    private final List<Prediccion> predicciones;
+    /** Interpretación final con lista de cartas y predicciones */
+    private String interpretacionFinal;
+    /** Fecha en que se realizó la lectura */
+    private final LocalDate fecha;
 
-    public Lectura(String tipoLectura, LocalDate fecha, Persona persona) {
-        this.tipoLectura = tipoLectura;
-        this.fecha = fecha;
+    public Lectura(Persona persona, List<CartaAstral> cartasSeleccionadas) {
         this.persona = persona;
-        this.cartasSeleccionadas = new ArrayList<>();
+        // Se copian las cartas seleccionadas para evitar modificación externa
+        this.cartasSeleccionadas = new ArrayList<>(cartasSeleccionadas);
         this.predicciones = new ArrayList<>();
-        this.interpretacion = "";
+        this.interpretacionFinal = "";
+        this.fecha = LocalDate.now();
     }
 
-    public void agregarCarta(String carta) {
-        cartasSeleccionadas.add(carta);
+    public void crearYAgregarPrediccion(Tarot tarot) {
+        // Composición: la lectura crea instancias de Prediccion
+        Prediccion pred = new Prediccion("General");
+        pred.generarPrediccion(tarot);
+        // Genera la descripción usando todo el mazo de la persona
+        pred.generarPrediccion(persona.getTarot());
+        predicciones.add(pred);
     }
 
-    public void agregarPrediccion(Prediccion prediccion) {
-        predicciones.add(prediccion);
+    public void generarInterpretacionFinal() {
+        StringBuilder sb = new StringBuilder();
+        sb.append("=== Interpretación Final (" + fecha + ") ===\n\n");
+
+        // 1. Incluir todas las cartas del Tarot de la persona
+        sb.append("Cartas en el mazo:\n");
+        for (CartaAstral carta : persona.getTarot().getCartas()) {
+            sb.append("- ").append(carta.getNombre()).append("\n");
+        }
+        sb.append("\n");
+
+        // 2. Incluir todas las predicciones específicas
+        sb.append("Predicciones generadas:\n");
+
+        for (Prediccion pred : predicciones) {
+            pred.generarPrediccion(persona.getTarot());
+            sb.append("- Carta: ")
+                    .append(persona.getTarot().getCartas().get(1).getNombre())
+                    .append(" -> ")
+                    .append(pred.getDescripcion())
+                    .append("\n");
+        }
+
+        // Almacena el resultado en el atributo principal
+        interpretacionFinal = sb.toString();
     }
 
-    public void realizarLectura() {
-        interpretacion = "Lectura realizada para " + persona.getNombre() + " con " + cartasSeleccionadas.size() + " carta(s).";
-    }
+    // Getters para exponer la información de la lectura
 
-    public String getTipoLectura() {
-        return tipoLectura;
-    }
-
-    public void setTipoLectura(String tipoLectura) {
-        this.tipoLectura = tipoLectura;
-    }
-
-    public LocalDate getFecha() {
-        return fecha;
-    }
-
-    public void setFecha(LocalDate fecha) {
-        this.fecha = fecha;
-    }
-
+    /** @return persona asociada a esta lectura */
     public Persona getPersona() {
         return persona;
     }
 
-    public void setPersona(Persona persona) {
-        this.persona = persona;
+    /** @return cartas seleccionadas para la lectura */
+    public List<CartaAstral> getCartasSeleccionadas() {
+        return new ArrayList<>(cartasSeleccionadas);
     }
 
-    public List<String> getCartasSeleccionadas() {
-        return cartasSeleccionadas;
-    }
-
-    public String getInterpretacion() {
-        return interpretacion;
-    }
-
+    /** @return lista de predicciones generadas */
     public List<Prediccion> getPredicciones() {
-        return predicciones;
+        return new ArrayList<>(predicciones);
+    }
+
+    /** @return texto completo de la interpretación final */
+    public String getInterpretacionFinal() {
+        return interpretacionFinal;
+    }
+
+    /** @return fecha en que se realizó la lectura */
+    public LocalDate getFecha() {
+        return fecha;
     }
 }
