@@ -391,6 +391,7 @@ public class ArcanoMenor implements CartaAstral {
         return "enfoque desconocido";
     }
 
+    @Override
     public String obtenerInformacionCompleta() {
         StringBuilder info = new StringBuilder();
         info.append("=== ").append(nombre).append(" (ID: ").append(id).append(") ===\n");

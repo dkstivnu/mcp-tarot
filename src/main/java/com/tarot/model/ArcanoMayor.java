@@ -526,6 +526,7 @@ public class ArcanoMayor implements CartaAstral {
     }
 
     // Método adicional para obtener todos los significados
+    @Override
     public String obtenerInformacionCompleta() {
         StringBuilder info = new StringBuilder();
         info.append("=== ").append(nombre).append(" (ID: ").append(id).append(") ===\n");

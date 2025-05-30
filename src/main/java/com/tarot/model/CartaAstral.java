@@ -12,4 +12,5 @@ public interface CartaAstral {
 
     String obtenerElemento();
     String obtenerPalabrasClave();
+    String obtenerInformacionCompleta();
 }
