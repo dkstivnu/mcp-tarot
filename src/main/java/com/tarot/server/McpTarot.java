@@ -19,4 +19,5 @@ public class McpTarot {
                     .tools(true)    // Activar el soporte de Tools
                     .build())
             .build();
+
 }
