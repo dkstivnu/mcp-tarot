@@ -54,4 +54,26 @@ public class Tarot {
                 "General       : " + carta.obtenerSignificadoGeneral();
     }
 
+    public void crearMazo() {
+        ArcanoMenor.Palo[] palos = ArcanoMenor.Palo.values();
+        String[] elementos = new String[]{"Fuego", "Tierra", "Agua", "Aire"};
+        String[] areas = new String[]{"General", "Amor", "Riqueza", "Sentimientos"};
+
+        for (int i = 0; i <= 3; i++) {
+            switch (random.nextInt(0, 1)) {
+                case 0: { //Se crea un arcano menor
+                    cartas.add(new ArcanoMenor(random.nextInt(1, 13), palos[random.nextInt(0, palos.length)]));
+                }
+                break;
+                case 1: { //Se crea un arcano mayor
+                    cartas.add(new ArcanoMayor(random.nextInt(0,21),
+                            elementos[random.nextInt(0, elementos.length)],
+                            areas[random.nextInt(0, areas.length)]));
+                }
+                break;
+                default:
+            }
+        }
+    }
+
 }

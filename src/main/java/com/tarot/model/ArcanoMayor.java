@@ -7,7 +7,7 @@ import java.util.Random;
 public class ArcanoMayor implements CartaAstral {
 
     private final int id;
-    private final String nombre;
+    private String nombre;
     private final String elemento;
     private final String area;
     private List<String> significadosGenerales;
@@ -17,9 +17,9 @@ public class ArcanoMayor implements CartaAstral {
 
     // Constructor
 
-    public ArcanoMayor(int id, String nombre, String elemento, String area) {
+    public ArcanoMayor(int id, String elemento, String area) {
         this.id = id;
-        this.nombre = nombre;
+        this.nombre = "";
         this.elemento = elemento;
         this.area = area;
         inicializarSignificados();
@@ -28,6 +28,7 @@ public class ArcanoMayor implements CartaAstral {
     private void inicializarSignificados() {
         switch (this.id) {
             case 0: // El Loco
+                this.nombre = "El loco";
                 this.significadosGenerales = Arrays.asList(
                         "Representa nuevos comienzos, espontaneidad y potencial ilimitado",
                         "Simboliza la inocencia, la aventura y el salto de fe hacia lo desconocido",
@@ -47,6 +48,7 @@ public class ArcanoMayor implements CartaAstral {
                 break;
 
             case 1: // El Mago
+                this.nombre = "El Mago";
                 this.significadosGenerales = Arrays.asList(
                         "Representa la manifestación del poder personal y la creatividad",
                         "Simboliza la capacidad de transformar ideas en realidad",
@@ -66,6 +68,7 @@ public class ArcanoMayor implements CartaAstral {
                 break;
 
             case 2: // La Sacerdotisa
+                this.nombre = "La Sacerdotisa";
                 this.significadosGenerales = Arrays.asList(
                         "Representa la intuición, los misterios y el conocimiento oculto",
                         "Simboliza la sabiduría interior y la conexión espiritual",
@@ -85,6 +88,7 @@ public class ArcanoMayor implements CartaAstral {
                 break;
 
             case 3: // La Emperatriz
+                this.nombre = "La Emperatriz";
                 this.significadosGenerales = Arrays.asList(
                         "Representa la feminidad, la creatividad y la abundancia",
                         "Simboliza la maternidad, la fertilidad y el cuidado",
@@ -104,6 +108,7 @@ public class ArcanoMayor implements CartaAstral {
                 break;
 
             case 4: // El Emperador
+                this.nombre = "El Emperador";
                 this.significadosGenerales = Arrays.asList(
                         "Representa la autoridad, el liderazgo y la estructura",
                         "Simboliza el poder paternal y la protección",
@@ -123,6 +128,7 @@ public class ArcanoMayor implements CartaAstral {
                 break;
 
             case 5: // El Hierofante
+                this.nombre = "El Hierofante";
                 this.significadosGenerales = Arrays.asList(
                         "Representa la sabiduría tradicional y las enseñanzas espirituales",
                         "Simboliza la conformidad con las normas establecidas",
@@ -141,6 +147,7 @@ public class ArcanoMayor implements CartaAstral {
                 this.palabrasClave = Arrays.asList("Tradición", "Enseñanza", "Espiritualidad", "Conformidad", "Sabiduría");
                 break;
             case 6: // Los Enamorados
+                this.nombre = "Los Enamorados";
                 this.significadosGenerales = Arrays.asList(
                         "Representa elección y armonía afectiva",
                         "Simboliza el amor, la unión y la conexión profunda",
@@ -162,6 +169,7 @@ public class ArcanoMayor implements CartaAstral {
                 break;
 
             case 7: // El Carro
+                this.nombre = "El Carro";
                 this.significadosGenerales = Arrays.asList(
                         "Representa victoria y determinación",
                         "Simboliza avance rápido y control",
@@ -183,6 +191,7 @@ public class ArcanoMayor implements CartaAstral {
                 break;
 
             case 8: // La Justicia
+                this.nombre = "La Justicia";
                 this.significadosGenerales = Arrays.asList(
                         "Representa equilibrio y verdad",
                         "Simboliza justicia y responsabilidad",
@@ -204,6 +213,7 @@ public class ArcanoMayor implements CartaAstral {
                 break;
 
             case 9: // El Ermitaño
+                this.nombre = "El Ermitaño";
                 this.significadosGenerales = Arrays.asList(
                         "Representa introspección y sabiduría interior",
                         "Simboliza soledad elegida para la reflexión",
@@ -225,6 +235,7 @@ public class ArcanoMayor implements CartaAstral {
                 break;
 
             case 10: // La Rueda de la Fortuna
+                this.nombre = "La Rueda de la Fortuna";
                 this.significadosGenerales = Arrays.asList(
                         "Representa cambios y ciclos de la vida",
                         "Simboliza suerte y destinos cambiantes",
@@ -246,6 +257,7 @@ public class ArcanoMayor implements CartaAstral {
                 break;
 
             case 11: // La Fuerza
+                this.nombre = "La Fuerza";
                 this.significadosGenerales = Arrays.asList(
                         "Representa coraje y compasión",
                         "Simboliza dominio de impulsos con suavidad",
@@ -267,6 +279,7 @@ public class ArcanoMayor implements CartaAstral {
                 break;
 
             case 12: // El Colgado
+                this.nombre = "El Colgado";
                 this.significadosGenerales = Arrays.asList(
                         "Representa sacrificio y nueva perspectiva",
                         "Simboliza pausa intencional y reflexión",
@@ -288,6 +301,7 @@ public class ArcanoMayor implements CartaAstral {
                 break;
 
             case 13: // La Muerte
+                this.nombre ="La Muerte";
                 this.significadosGenerales = Arrays.asList(
                         "Representa transformación y renacimiento",
                         "Simboliza finales necesarios",
@@ -308,6 +322,7 @@ public class ArcanoMayor implements CartaAstral {
                 );
                 break;
             case 14: // La Templanza
+                this.nombre = "La Templanza";
                 this.significadosGenerales = Arrays.asList(
                         "Representa equilibrio y armonía",
                         "Simboliza moderación y paciencia",
@@ -329,6 +344,7 @@ public class ArcanoMayor implements CartaAstral {
                 break;
 
             case 15: // El Diablo
+                this.nombre = "El Diablo";
                 this.significadosGenerales = Arrays.asList(
                         "Representa ataduras y tentaciones",
                         "Simboliza materialismo y obsesiones",
@@ -350,6 +366,7 @@ public class ArcanoMayor implements CartaAstral {
                 break;
 
             case 16: // La Torre
+                this.nombre = "La Torre";
                 this.significadosGenerales = Arrays.asList(
                         "Representa ruptura y revelación",
                         "Simboliza caos necesario",
@@ -371,6 +388,7 @@ public class ArcanoMayor implements CartaAstral {
                 break;
 
             case 17: // La Estrella
+                this.nombre = "La Estrella";
                 this.significadosGenerales = Arrays.asList(
                         "Representa esperanza y guía",
                         "Simboliza inspiración y paz",
@@ -392,6 +410,7 @@ public class ArcanoMayor implements CartaAstral {
                 break;
 
             case 18: // La Luna
+                this.nombre = "La Luna";
                 this.significadosGenerales = Arrays.asList(
                         "Representa intuición y misterio",
                         "Simboliza ilusiones y sueños",
@@ -413,6 +432,7 @@ public class ArcanoMayor implements CartaAstral {
                 break;
 
             case 19: // El Sol
+                this.nombre = "El Sol";
                 this.significadosGenerales = Arrays.asList(
                         "Representa éxito y vitalidad",
                         "Simboliza alegría y claridad",
@@ -434,6 +454,7 @@ public class ArcanoMayor implements CartaAstral {
                 break;
 
             case 20: // El Juicio
+                this.nombre = "El Juicio";
                 this.significadosGenerales = Arrays.asList(
                         "Representa renacimiento y evaluación",
                         "Simboliza despertar y perdón",
@@ -455,6 +476,7 @@ public class ArcanoMayor implements CartaAstral {
                 break;
 
             case 21: // El Mundo
+                this.nombre = "EL Mundo";
                 this.significadosGenerales = Arrays.asList(
                         "Representa plenitud y logro",
                         "Simboliza cierre de ciclos",
