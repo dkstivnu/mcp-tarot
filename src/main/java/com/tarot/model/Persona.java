@@ -20,14 +20,6 @@ public class Persona {
         this.tarot = new Tarot();
     }
 
-    public Persona() {
-        this.nombre = "N/A";
-        this.fechaNacimiento = null;
-        this.signoZodiaco = null;
-        this.tarot = null;
-
-    }
-
     // Metodos getters y setters
 
     public String getNombre() {
@@ -61,6 +53,5 @@ public class Persona {
     public void setTarot(Tarot tarot) {
         this.tarot = tarot;
     }
-
 
 }
