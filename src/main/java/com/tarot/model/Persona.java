@@ -1,32 +1,45 @@
 package com.tarot.model;
 
 import java.time.LocalDate;
+import java.time.ZoneId;
+import java.util.Date;
 
 public class Persona {
+    private final String nombre;
+    private final LocalDate fechaNacimiento;
+    private final String signoZodiacal;
+    private final Tarot tarot;
+    private final CartaAstral cartaAstral;
 
-    // Atributos
+    // Constructor actualizado para recibir lugarNacimiento
+    public Persona(LocalDate fechaNacimiento, String nombre, String lugarNacimiento) {
+        if (nombre == null || nombre.trim().isEmpty())
+            throw new IllegalArgumentException("El nombre no puede estar vacío.");
+        if (fechaNacimiento == null)
+            throw new IllegalArgumentException("La fecha de nacimiento es obligatoria.");
+        if (lugarNacimiento == null || lugarNacimiento.trim().isEmpty())
+            throw new IllegalArgumentException("El lugar de nacimiento no puede estar vacío.");
 
-    private String nombre;
-    private LocalDate fechaNacimiento;
-    private Zodiaco signoZodiaco;
-    private Tarot tarot;
-
-    // Constructores
-
-    public Persona(LocalDate fechaNacimiento, String nombre) {
-        this.fechaNacimiento = fechaNacimiento;
         this.nombre = nombre;
-        this.signoZodiaco = Zodiaco.leerSigno(fechaNacimiento);
+        this.fechaNacimiento = fechaNacimiento;
+        this.signoZodiacal = Zodiaco.determineSigno(fechaNacimiento);
         this.tarot = new Tarot();
+        this.cartaAstral = new ArcanoMayor(0, "Carta Natal");
+
+        // Convertir LocalDate a Date para la carta astral
+        Date fechaUtil = Date.from(
+                fechaNacimiento.atStartOfDay(ZoneId.systemDefault()).toInstant()
+        );
+        // Ahora pasamos también el lugarNacimiento
+        cartaAstral.establecerDatosPersonales(nombre, fechaUtil, lugarNacimiento);
     }
 
-    public Persona() {
-        this.nombre = "N/A";
-        this.fechaNacimiento = null;
-        this.signoZodiaco = null;
-        this.tarot = null;
-
-    }
+    public String getNombre() { return nombre; }
+    public LocalDate getFechaNacimiento() { return fechaNacimiento; }
+    public String getSignoZodiacal() { return signoZodiacal; }
+    public Tarot getTarot() { return tarot; }
+    public CartaAstral getCartaAstral() { return cartaAstral; }
+}
 
     // Metodos getters y setters
 
