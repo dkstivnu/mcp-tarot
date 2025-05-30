@@ -81,7 +81,7 @@ public class ArcanoMenor implements CartaAstral {
         return nombreCarta + " de " + palo.getNombre();
     }
 
-    private int calcularProbabilidad(int numero) {
+    public int calcularProbabilidad(int numero) {
         // Sistema de probabilidad basado en el número de la carta
         switch (numero) {
             case 1: return 95; // As - muy alta probabilidad
@@ -436,15 +436,15 @@ public class ArcanoMenor implements CartaAstral {
     public String obtenerMensajeProbabilidad() {
         String nivel;
         if (probabilidad >= 85) {
-            nivel = "muy alta";
+            nivel = "Muy alta";
         } else if (probabilidad >= 70) {
-            nivel = "alta";
+            nivel = "Alta";
         } else if (probabilidad >= 55) {
-            nivel = "moderada";
+            nivel = "Moderada";
         } else if (probabilidad >= 40) {
-            nivel = "baja";
+            nivel = "Baja";
         } else {
-            nivel = "muy baja";
+            nivel = "Muy baja";
         }
 
         return "Esta carta tiene una probabilidad " + nivel + " (" + probabilidad + "%) de manifestarse en la realidad.";

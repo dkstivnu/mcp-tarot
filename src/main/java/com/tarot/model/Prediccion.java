@@ -4,14 +4,14 @@ import java.util.Random;
 
 public class Prediccion {
 
-    private Lectura lectura;
     private String descripcion;
     private String categoria;
-    private int probabilidad;
+    private String probabilidad;
 
     public Prediccion(String categoria) {
+
         this.categoria = categoria;
-        this.probabilidad = 50;
+        this.probabilidad = "Media";
     }
 
     public void generarPrediccion(Tarot tarot) {
@@ -46,7 +46,7 @@ public class Prediccion {
         String especifico = "";
         if ("Al revés".equalsIgnoreCase(sentido)) {
             especifico = carta.obtenerSignificadoAlReves();
-        } else if("Al derecho".equalsIgnoreCase(sentido)) {
+        } else if ("Al derecho".equalsIgnoreCase(sentido)) {
             // Por defecto lo mostramos al derecho
             especifico = carta.obtenerSignificadoAlDerecho();
         } else if ("Normal".equalsIgnoreCase(sentido)) {
@@ -60,20 +60,28 @@ public class Prediccion {
         return general + "\n" +
                 especifico + "\n" +
                 "Categoría: " + categoria +
-                " • Área: " + area;
+                "Área: " + area + "\n"+
+                "Probabilidad: " + obtenerNivelProbabilidad(carta) + "\n";
     }
 
-    public String obtenerNivelProbabilidad() {
-        if (probabilidad >= 80) return "Alta";
-        else if (probabilidad >= 50) return "Media";
-        else return "Baja";
+    public String obtenerNivelProbabilidad(CartaAstral carta) {
+        if (carta instanceof ArcanoMenor) {
+            // Para cartas menores: su propio mensaje
+            this.probabilidad = ((ArcanoMenor) carta).obtenerMensajeProbabilidad();
+        } else {
+            // Para cartas mayores: probabilidad base ±10%
+            Random r = new Random();
+            int prob = r.nextInt(100);
+            this.probabilidad = "La probabilidad es: "+ prob + "%\n";
+        }
+        return "Ninguna";
     }
 
     public void setProbabilidad(int probabilidad) throws ProbabilidadInvalidaException {
         if (probabilidad < 0 || probabilidad > 100) {
             throw new ProbabilidadInvalidaException("La probabilidad debe estar entre 0 y 100.");
         }
-        this.probabilidad = probabilidad;
+        this.probabilidad = "La probabilidad es: " + probabilidad;
     }
 
     public String getDescripcion() {
@@ -92,7 +100,7 @@ public class Prediccion {
         this.categoria = categoria;
     }
 
-    public int getProbabilidad() {
+    public String getProbabilidad() {
         return probabilidad;
     }
 
