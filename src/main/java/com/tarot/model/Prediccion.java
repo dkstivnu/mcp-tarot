@@ -1,38 +1,28 @@
 package com.tarot.model;
 
-import java.util.Date;
 import java.util.List;
 import java.util.Random;
 
 public class Prediccion {
 
-    private String titulo;
     private String descripcion;
-    private String categoria; 
-    private Date fechaPrediccion;
-    private Date fechaVencimiento;
-    private int probabilidad; 
-    private boolean cumplida;
+    private String categoria;
+    private int probabilidad;
 
-    public Prediccion(String titulo, String categoria, Date fechaVencimiento) {
-        this.titulo = titulo;
+    public Prediccion(String categoria) {
         this.categoria = categoria;
-        this.fechaPrediccion = new Date(); 
-        this.fechaVencimiento = fechaVencimiento;
-        this.probabilidad = 50; 
-        this.cumplida = false;
+        this.probabilidad = 50;
     }
 
-    public void generarPrediccion(List<String> cartasSeleccionadas, Tarot tarot) {
+    public void generarPrediccion(List<CartaAstral> cartasSeleccionadas, Tarot tarot) {
+        Random r = new Random();
         StringBuilder sb = new StringBuilder();
         sb.append("🔮 ***Predicción de Tarot para el área de ").append(categoria).append("*** 🔮\n");
-        sb.append("Fecha de la consulta: ").append(fechaPrediccion).append("\n\n");
 
-        Random random = new Random();
-        String[] sentidos = {"Al derecho", "Al revés", "Boca abajo", "Normal"};
+        String[] sentidos = {"Al derecho", "Al revés", "Normal"};
 
-        for (String carta : cartasSeleccionadas) {
-            String sentido = sentidos[random.nextInt(sentidos.length)];
+        for (CartaAstral carta : cartasSeleccionadas) {
+            String sentido = sentidos[r.nextInt(sentidos.length)];
             String significadoBase = tarot.obtenerSignificadoCarta(carta);
 
             String interpretacion = interpretarCarta(significadoBase, sentido, categoria, carta);
@@ -46,7 +36,7 @@ public class Prediccion {
         this.descripcion = sb.toString();
     }
 
-    private String interpretarCarta(String significadoBase, String sentido, String categoria, String carta) {
+    private String interpretarCarta(String significadoBase, String sentido, String categoria, CartaAstral carta) {
         StringBuilder interpretacion = new StringBuilder();
         interpretacion.append(significadoBase);
 
@@ -65,10 +55,6 @@ public class Prediccion {
         return interpretacion.toString();
     }
 
-    public boolean estaVencida() {
-        return new Date().after(fechaVencimiento);
-    }
-
     public String obtenerNivelProbabilidad() {
         if (probabilidad >= 80) return "Alta";
         else if (probabilidad >= 50) return "Media";
@@ -80,14 +66,6 @@ public class Prediccion {
             throw new ProbabilidadInvalidaException("La probabilidad debe estar entre 0 y 100.");
         }
         this.probabilidad = probabilidad;
-    }
-
-    public String getTitulo() {
-        return titulo;
-    }
-
-    public void setTitulo(String titulo) {
-        this.titulo = titulo;
     }
 
     public String getDescripcion() {
@@ -106,31 +84,8 @@ public class Prediccion {
         this.categoria = categoria;
     }
 
-    public Date getFechaPrediccion() {
-        return fechaPrediccion;
-    }
-
-    public void setFechaPrediccion(Date fechaPrediccion) {
-        this.fechaPrediccion = fechaPrediccion;
-    }
-
-    public Date getFechaVencimiento() {
-        return fechaVencimiento;
-    }
-
-    public void setFechaVencimiento(Date fechaVencimiento) {
-        this.fechaVencimiento = fechaVencimiento;
-    }
-
     public int getProbabilidad() {
         return probabilidad;
     }
 
-    public boolean isCumplida() {
-        return cumplida;
-    }
-
-    public void setCumplida(boolean cumplida) {
-        this.cumplida = cumplida;
-    }
 }

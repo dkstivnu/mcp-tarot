@@ -1,19 +1,19 @@
 package com.tarot.model;
 
 
+import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 public class Lectura {
     private String tipoLectura;
-    private Date fecha;
+    private LocalDate fecha;
     private Persona persona;
     private List<String> cartasSeleccionadas;
     private String interpretacion;
     private List<Prediccion> predicciones;
 
-    public Lectura(String tipoLectura, Date fecha, Persona persona) {
+    public Lectura(String tipoLectura, LocalDate fecha, Persona persona) {
         this.tipoLectura = tipoLectura;
         this.fecha = fecha;
         this.persona = persona;
@@ -42,11 +42,11 @@ public class Lectura {
         this.tipoLectura = tipoLectura;
     }
 
-    public Date getFecha() {
+    public LocalDate getFecha() {
         return fecha;
     }
 
-    public void setFecha(Date fecha) {
+    public void setFecha(LocalDate fecha) {
         this.fecha = fecha;
     }
 

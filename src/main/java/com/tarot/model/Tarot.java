@@ -49,10 +49,9 @@ public class Tarot {
 
     //Metodos propios
 
-    public CartaAstral seleccionarCartaAleatoria() {
-        return cartas.get(random.nextInt(cartas.size()));
-    }
-    public void inicializarCartas() {
+    public String obtenerSignificadoCarta(CartaAstral carta) {
+        return "=== Significado de “" + carta.getNombre() + "” ===\n" +
+                "General       : " + carta.obtenerSignificadoGeneral();
     }
 
 }
