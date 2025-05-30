@@ -1,7 +1,19 @@
 package com.tarot.model;
 
-import java.util.List;
-
 public class ArcanoMayor implements CartaAstral {
 
+    @Override
+    public int[] getIdenficador() {
+        return new int[0];
+    }
+
+    @Override
+    public String obtenerSignficadoGeneral() {
+        return "";
+    }
+
+    @Override
+    public String obtenerArea() {
+        return "";
+    }
 }
