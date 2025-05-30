@@ -4,6 +4,7 @@ import java.util.Random;
 
 public class Prediccion {
 
+    private Lectura lectura;
     private String descripcion;
     private String categoria;
     private int probabilidad;
@@ -24,7 +25,7 @@ public class Prediccion {
 
             String sentido = sentidos[r.nextInt(sentidos.length)];
 
-            String interpretacion = interpretarCarta(sentido, categoria, carta);
+            String interpretacion = interpretarCarta(carta, categoria, sentido);
 
             sb.append("🃏 ***").append(carta).append("*** (").append(sentido).append("):\n");
             sb.append(interpretacion).append("\n\n");
@@ -35,22 +36,31 @@ public class Prediccion {
         this.descripcion = sb.toString();
     }
 
-    private String interpretarCarta(String sentido, String categoria, CartaAstral carta) {
-        StringBuilder interpretacion = new StringBuilder();
+    private String interpretarCarta(CartaAstral carta,
+                                    String categoria,
+                                    String sentido) {
 
-        if (sentido.equals("Al revés")) {
-            interpretacion.append(" Esta carta al revés indica bloqueos, resistencia o energías estancadas en el área de ").append(categoria.toLowerCase()).append(". Es probable que debas replantear decisiones o enfrentar obstáculos antes de avanzar.");
-        } else if (sentido.equals("Boca abajo")) {
-            interpretacion.append(" Al aparecer boca abajo, esta carta sugiere confusión, dudas o una interpretación distorsionada de la realidad. Podría haber percepciones erróneas o miedos ocultos que dificultan ver con claridad en temas de ").append(categoria.toLowerCase()).append(".");
-        } else if (sentido.equals("Normal")) {
-            interpretacion.append(" En posición normal, la carta mantiene un mensaje sutil, influyendo de forma indirecta o simbólica. No es una fuerza dominante, pero sí importante de considerar en tu vida actual.");
-        } else {
-            interpretacion.append(" Al derecho, esta carta manifiesta su energía plena y positiva. Es una señal alentadora para avanzar con confianza en el área de ").append(categoria.toLowerCase()).append(".");
+        String general = carta.obtenerSignificadoGeneral();
+
+        // 2) Según el sentido, obtengo el significado al derecho o al revés
+        String especifico = "";
+        if ("Al revés".equalsIgnoreCase(sentido)) {
+            especifico = carta.obtenerSignificadoAlReves();
+        } else if("Al derecho".equalsIgnoreCase(sentido)) {
+            // Por defecto lo mostramos al derecho
+            especifico = carta.obtenerSignificadoAlDerecho();
+        } else if ("Normal".equalsIgnoreCase(sentido)) {
+            especifico = "";
         }
 
-        interpretacion.append(" ").append(carta).append(" te invita a reflexionar profundamente sobre tu situación actual y a tomar decisiones conscientes para lograr equilibrio y bienestar.");
+        // 3) Construyo un bloque con el área / categoría que me pasaron
+        String area = carta.obtenerArea();
 
-        return interpretacion.toString();
+        // 4) Combino todo en un único texto
+        return general + "\n" +
+                especifico + "\n" +
+                "Categoría: " + categoria +
+                " • Área: " + area;
     }
 
     public String obtenerNivelProbabilidad() {
