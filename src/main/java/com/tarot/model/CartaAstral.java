@@ -1,25 +1,9 @@
 package com.tarot.model;
 
-import java.util.List;
-
 public interface CartaAstral {
+    int[] getIdenficador();
 
-    void establecerDatosPersonales();
-    void calcularPosicionesPlanetarias();
+    String obtenerSignficadoGeneral();
 
-    String obtenerSignoSolar();
-    String obtenerSignoLunar();
-    String obtenerAscendente();
-
-    void calcularCasasAstrologicas();
-    List<String> obtenerAspectosPlanetarios();
-
-    String generarInterpretacionGeneral();
-    String generarInterpretacioporAreas();
-    
-    boolean validarDatos();
-
-
-
-
+    String obtenerArea();
 }

@@ -1,56 +1,18 @@
 package com.tarot.model;
 
-import java.util.List;
-
 public class ArcanoMenor implements CartaAstral {
-
     @Override
-    public void establecerDatosPersonales() {
-
+    public int[] getIdenficador() {
+        return new int[0];
     }
 
     @Override
-    public void calcularPosicionesPlanetarias() {
-
-    }
-
-    @Override
-    public String obtenerSignoSolar() {
+    public String obtenerSignficadoGeneral() {
         return "";
     }
 
     @Override
-    public String obtenerSignoLunar() {
+    public String obtenerArea() {
         return "";
-    }
-
-    @Override
-    public String obtenerAscendente() {
-        return "";
-    }
-
-    @Override
-    public void calcularCasasAstrologicas() {
-
-    }
-
-    @Override
-    public List<String> obtenerAspectosPlanetarios() {
-        return List.of();
-    }
-
-    @Override
-    public String generarInterpretacionGeneral() {
-        return "";
-    }
-
-    @Override
-    public String generarInterpretacioporAreas() {
-        return "";
-    }
-
-    @Override
-    public boolean validarDatos() {
-        return false;
     }
 }
