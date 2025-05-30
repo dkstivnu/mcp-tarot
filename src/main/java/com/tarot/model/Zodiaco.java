@@ -96,4 +96,17 @@ public enum Zodiaco {
 
         throw new RuntimeException("No se ha podido leer el signo correctamente");
     }
+
+    public static Zodiaco leerSigno(String nombreSigno) throws RuntimeException {
+        if (nombreSigno == null || nombreSigno.trim().isEmpty()) {
+            throw new IllegalArgumentException("El nombre del signo no puede estar vacío.");
+        }
+        String buscado = nombreSigno.trim().toLowerCase();
+        for (Zodiaco z : values()) {
+            if (z.name().toLowerCase().equals(buscado)) {
+                return z;
+            }
+        }
+        throw new IllegalArgumentException("Signo zodiacal desconocido: " + nombreSigno);
+    }
 }
