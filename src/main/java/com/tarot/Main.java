@@ -5,12 +5,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
-import com.tarot.model.ArcanoMayor;
-import com.tarot.model.ArcanoMenor;
 import com.tarot.model.CartaAstral;
 import com.tarot.model.Lectura;
 import com.tarot.model.Persona;
-import com.tarot.model.Tarot;
 
 public class Main {
     public static void main(String[] args) {
@@ -35,25 +32,17 @@ public class Main {
             // Crear la persona
             Persona persona = new Persona(fechaNacimiento, nombre);
 
-            // Crear algunos Arcanos Mayores y Menores para el mazo
-            ArcanoMayor elLoco = new ArcanoMayor(0, "El Loco", "Aire", "Comienzos");
-            ArcanoMenor dosCopas = new ArcanoMenor(2, ArcanoMenor.Palo.COPAS);
-            ArcanoMenor asBastos = new ArcanoMenor(1, ArcanoMenor.Palo.BASTOS);
-
             // Agregar cartas al mazo de la persona
-            Tarot tarot = persona.getTarot();
-            tarot.getCartas().add(elLoco);
-            tarot.getCartas().add(dosCopas);
-            tarot.getCartas().add(asBastos);
+            persona.getTarot().crearMazo();
 
             // Seleccionar cartas para la lectura (puede ser todas del mazo)
-            List<CartaAstral> seleccionadas = new ArrayList<>(tarot.getCartas());
+            List<CartaAstral> seleccionadas = new ArrayList<>(persona.getTarot().getCartas());
 
             // Crear la lectura de tarot
             Lectura lectura = new Lectura(persona, seleccionadas);
 
             // Crear una predicción y agregarla a la lectura
-            lectura.crearYAgregarPrediccion(tarot);
+            lectura.crearYAgregarPrediccion(persona.getTarot());
 
             // Generar la interpretación final
             lectura.generarInterpretacionFinal();
