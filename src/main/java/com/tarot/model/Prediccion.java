@@ -1,6 +1,5 @@
 package com.tarot.model;
 
-import java.util.List;
 import java.util.Random;
 
 public class Prediccion {
@@ -14,31 +13,30 @@ public class Prediccion {
         this.probabilidad = 50;
     }
 
-    public void generarPrediccion(List<CartaAstral> cartasSeleccionadas, Tarot tarot) {
+    public void generarPrediccion(Tarot tarot) {
         Random r = new Random();
         StringBuilder sb = new StringBuilder();
         sb.append("🔮 ***Predicción de Tarot para el área de ").append(categoria).append("*** 🔮\n");
 
         String[] sentidos = {"Al derecho", "Al revés", "Normal"};
 
-        for (CartaAstral carta : cartasSeleccionadas) {
-            String sentido = sentidos[r.nextInt(sentidos.length)];
-            String significadoBase = tarot.obtenerSignificadoCarta(carta);
+        for (CartaAstral carta : tarot.getCartas()) {
 
-            String interpretacion = interpretarCarta(significadoBase, sentido, categoria, carta);
+            String sentido = sentidos[r.nextInt(sentidos.length)];
+
+            String interpretacion = interpretarCarta(sentido, categoria, carta);
 
             sb.append("🃏 ***").append(carta).append("*** (").append(sentido).append("):\n");
             sb.append(interpretacion).append("\n\n");
         }
-
-        sb.append("✨ Esta lectura es una guía profunda sobre tu situación actual en el área de ").append(categoria.toLowerCase()).append(". Las cartas iluminan caminos posibles, pero la elección final siempre es tuya.\n");
+        sb.append("✨ Esta prediccion es una guía profunda sobre tu situación futura en el área de ").append(categoria.toLowerCase())
+                .append(". Las cartas iluminan caminos posibles, pero la elección final siempre es tuya.\n");
 
         this.descripcion = sb.toString();
     }
 
-    private String interpretarCarta(String significadoBase, String sentido, String categoria, CartaAstral carta) {
+    private String interpretarCarta(String sentido, String categoria, CartaAstral carta) {
         StringBuilder interpretacion = new StringBuilder();
-        interpretacion.append(significadoBase);
 
         if (sentido.equals("Al revés")) {
             interpretacion.append(" Esta carta al revés indica bloqueos, resistencia o energías estancadas en el área de ").append(categoria.toLowerCase()).append(". Es probable que debas replantear decisiones o enfrentar obstáculos antes de avanzar.");
