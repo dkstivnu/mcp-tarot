@@ -3,7 +3,7 @@ package com.tarot.model;
 public class ArcanoMayor implements CartaAstral {
 
     @Override
-    public int[] getIdenficador() {
+    public int[] getID() {
         return new int[0];
     }
 

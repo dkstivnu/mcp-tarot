@@ -1,7 +1,7 @@
 package com.tarot.model;
 
 public interface CartaAstral {
-    int[] getIdenficador();
+    int[] getID();
 
     String obtenerSignficadoGeneral();
 

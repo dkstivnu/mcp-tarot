@@ -2,7 +2,7 @@ package com.tarot.model;
 
 public class ArcanoMenor implements CartaAstral {
     @Override
-    public int[] getIdenficador() {
+    public int[] getID() {
         return new int[0];
     }
 
