@@ -7,8 +7,8 @@ public enum Zodiaco {
 
     Aries(Zodiaco.valueOf("Aries")),
     Tauro(Zodiaco.valueOf("Tauro")),
-    Geminis(Zodiaco.valueOf("Géminis")),
-    Cancer(Zodiaco.valueOf("Cáncer")),
+    Geminis(Zodiaco.valueOf("Geminis")),
+    Cancer(Zodiaco.valueOf("Cancer")),
     Leo(Zodiaco.valueOf("Leo")),
     Virgo(Zodiaco.valueOf("Virgo")),
     Libra(Zodiaco.valueOf("Libra")),
