@@ -19,15 +19,16 @@ public class Main {
             String nombre = scanner.nextLine();
 
             LocalDate fechaNacimiento = null;
-            while (fechaNacimiento == null) {
+            do {
                 try {
                     System.out.print("Ingrese su fecha de nacimiento (YYYY-MM-DD): ");
                     String fechaInput = scanner.nextLine();
                     fechaNacimiento = LocalDate.parse(fechaInput);
                 } catch (Exception e) {
-                    System.out.println("Formato inválido. Intente de nuevo.");
+                    System.out.println(e.getMessage());
+                    fechaNacimiento = null;
                 }
-            }
+            }while (fechaNacimiento == null);
 
             // Crear la persona
             Persona persona = new Persona(fechaNacimiento, nombre);

@@ -14,10 +14,16 @@ public class Prediccion {
         this.probabilidad = "Media";
     }
 
+
     public void generarPrediccion(Tarot tarot) {
         Random r = new Random();
         StringBuilder sb = new StringBuilder();
-        sb.append("🔮 ***Predicción de Tarot para el área de ").append(categoria).append("*** 🔮\n");
+        if (categoria.isEmpty()) {
+            categoria = "General";
+        }
+        sb.append("🔮 ***Predicción de Tarot para el área de ").append(
+                categoria
+        ).append("*** 🔮\n");
 
         String[] sentidos = {"Al derecho", "Al revés", "Normal"};
 
@@ -27,7 +33,8 @@ public class Prediccion {
 
             String interpretacion = interpretarCarta(carta, categoria, sentido);
 
-            sb.append("🃏 ***").append(carta).append("*** (").append(sentido).append("):\n");
+            sb.append("🃏 ***").append(carta.getNombre()).append("*** (")
+                    .append(sentido).append("):\n");
             sb.append(interpretacion).append("\n\n");
         }
         sb.append("✨ Esta prediccion es una guía profunda sobre tu situación futura en el área de ").append(categoria.toLowerCase())
@@ -60,7 +67,7 @@ public class Prediccion {
         return general + "\n" +
                 especifico + "\n" +
                 "Categoría: " + categoria +
-                "Área: " + area + "\n"+
+                "Área: " + area + "\n" +
                 "Probabilidad: " + obtenerNivelProbabilidad(carta) + "\n";
     }
 
@@ -72,9 +79,9 @@ public class Prediccion {
             // Para cartas mayores: probabilidad base ±10%
             Random r = new Random();
             int prob = r.nextInt(100);
-            this.probabilidad = "La probabilidad es: "+ prob + "%\n";
+            this.probabilidad = "La probabilidad es: " + prob + "%\n";
         }
-        return "Ninguna";
+        return "Media-Baja";
     }
 
     public void setProbabilidad(int probabilidad) throws ProbabilidadInvalidaException {
