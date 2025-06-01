@@ -1,7 +1,5 @@
 package com.tarot.tools;
 
-import com.tarot.model.ArcanoMayor;
-import com.tarot.model.ArcanoMenor;
 import com.tarot.model.Lectura;
 import com.tarot.model.Persona;
 import io.modelcontextprotocol.server.McpServerFeatures;
@@ -11,7 +9,6 @@ import java.time.LocalDate;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Random;
 
 public class GenPrediccion {
 
@@ -23,8 +20,8 @@ public class GenPrediccion {
             false // no permitir propiedades adicionales
     );
 
-    McpServerFeatures.SyncToolSpecification syncToolSpecification = new McpServerFeatures.SyncToolSpecification(
-            new McpSchema.Tool("GenLectura",
+    public McpServerFeatures.SyncToolSpecification generacionPrediccion = new McpServerFeatures.SyncToolSpecification(
+            new McpSchema.Tool("Generar Lectura",
                     "Genera la lectura del tarot a partir de la fecha de nacimiento",
                     schema),
             (exchange, arguments) -> {
